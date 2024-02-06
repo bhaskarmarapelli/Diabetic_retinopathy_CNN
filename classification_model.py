@@ -7,14 +7,15 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 import matplotlib.pyplot as plt
 class Classifcation_model:
     def simple_model(self):
-        model = Sequential([
-            Flatten(input_shape=(224, 224, 3)),
-            Dense(32, activation='relu'),
-            Dense(64, activation='relu'),
-            Dense(128, activation='relu'),
-            Dense(5, activation='softmax'),
-        ])
-        return model
+            model = Sequential([
+                Conv2D(32, (3, 3), activation='relu', input_shape=(224, 224, 3)),
+                Flatten(),
+                Dense(32, activation='relu'),
+                Dense(64, activation='relu'),
+                Dense(128, activation='relu'),
+                Dense(5, activation='softmax'),
+            ])
+            return model
     def compile_model(self,model,opt):
         model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
         return model
